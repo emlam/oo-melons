@@ -3,7 +3,7 @@
 class AbstractMelonOrder(object):
     """ You fill in the rest """
     
-    def __init__(self, species, qty, order_type, tax):
+    def __init__(self, species, qty, order_type, tax, country_code = None):
         """Initializing a melon order"""
 
         self.species = species
@@ -12,6 +12,7 @@ class AbstractMelonOrder(object):
         self.base_price = 5
         self.order_type = order_type
         self.tax = tax
+        self.country_code = country_code
         
 
     def mark_shipped(self):
@@ -32,7 +33,7 @@ class DomesticMelonOrder(AbstractMelonOrder):
     """ You fill in the rest """
 
     def __init__(self, species, qty):
-        super(DomesticMelonOrder,self).__init__(species,qty, "domestic",.08)
+        super(DomesticMelonOrder,self).__init__(species,qty, "domestic", .08)
 
 
 class InternationalMelonOrder(AbstractMelonOrder):
@@ -40,9 +41,8 @@ class InternationalMelonOrder(AbstractMelonOrder):
 
         
     def __init__(self, species, qty, country_code):
-        super(InternationalMelonOrder,self).__init__(species,qty,country_code,"international", .17)
+        super(InternationalMelonOrder,self).__init__(species, qty, "international", .17, country_code)
         
-        self.country_code = country_code
 
     def get_country_code(self):
         """Return the country code."""
